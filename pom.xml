@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Nota deliberada: este POM NO lleva xsi:schemaLocation.
+  Maven ignora esa pista y resuelve su propio XSD; solo sirve para el
+  autocompletado del IDE. Ver CONTRIBUTING.md.
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.peluware.sri</groupId>
+  <artifactId>comprobantes-parent</artifactId>
+  <version>0.1.0-SNAPSHOT</version>
+  <packaging>pom</packaging>
+
+  <name>Comprobantes Electrónicos SRI</name>
+  <description>
+    Librería Java para la emisión de comprobantes electrónicos del SRI (Ecuador),
+    esquema offline. Conforme a la Ficha Técnica v2.34 (julio 2026).
+  </description>
+
+  <url>https://github.com/peluware/java-facturacion-sri.git</url>
+
+  <licenses>
+    <license>
+      <name>Apache-2.0</name>
+      <url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
+    </license>
+  </licenses>
+
+  <developers>
+    <developer>
+      <id>luidmidev</id>
+      <name>Luis Miguel Vasquez Basurto</name>
+      <email>luidmidev@gmail.com</email>
+    </developer>
+  </developers>
+
+  <scm>
+    <url>https://github.com/peluware/java-facturacion-sri.git</url>
+    <connection>scm:git:git://github.com/peluware/java-facturacion-sri.git</connection>
+    <developerConnection>scm:git:ssh://github.com/peluware/java-facturacion-sri.git</developerConnection>
+    <tag>HEAD</tag>
+  </scm>
+
+  <modules>
+    <module>comprobantes-core</module>
+    <module>comprobantes-xades</module>
+    <module>comprobantes-client</module>
+    <module>comprobantes-ride</module>
+    <module>comprobantes-ride-pdfbox</module>
+    <module>comprobantes-it</module>
+  </modules>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    <maven.compiler.release>21</maven.compiler.release>
+    <pdfbox.version>3.0.8</pdfbox.version>
+    <zxing.version>3.5.3</zxing.version>
+
+    <junit.version>5.11.4</junit.version>
+    <plugin.compiler.version>3.13.0</plugin.compiler.version>
+    <plugin.surefire.version>3.5.2</plugin.surefire.version>
+    <plugin.jar.version>3.4.2</plugin.jar.version>
+    <plugin.source.version>3.3.1</plugin.source.version>
+    <plugin.javadoc.version>3.6.3</plugin.javadoc.version>
+    <plugin.gpg.version>3.2.3</plugin.gpg.version>
+    <plugin.central.version>0.11.0</plugin.central.version>
+    <jspecify.version>1.0.0</jspecify.version>
+    <bouncycastle.version>1.78.1</bouncycastle.version>
+  </properties>
+
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>org.junit</groupId>
+        <artifactId>junit-bom</artifactId>
+        <version>${junit.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.jspecify</groupId>
+        <artifactId>jspecify</artifactId>
+        <version>${jspecify.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.bouncycastle</groupId>
+        <artifactId>bcpkix-jdk18on</artifactId>
+        <version>${bouncycastle.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.peluware.sri</groupId>
+        <artifactId>comprobantes-core</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.peluware.sri</groupId>
+        <artifactId>comprobantes-core</artifactId>
+        <version>${project.version}</version>
+        <type>test-jar</type>
+      </dependency>
+      <dependency>
+        <groupId>com.peluware.sri</groupId>
+        <artifactId>comprobantes-xades</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.peluware.sri</groupId>
+        <artifactId>comprobantes-client</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+
+  <build>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <version>${plugin.compiler.version}</version>
+          <configuration>
+            <compilerArgs>
+              <arg>-Xlint:all,-serial</arg>
+            </compilerArgs>
+          </configuration>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-surefire-plugin</artifactId>
+          <version>${plugin.surefire.version}</version>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-jar-plugin</artifactId>
+          <version>${plugin.jar.version}</version>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-source-plugin</artifactId>
+        <version>${plugin.source.version}</version>
+        <executions>
+          <execution>
+            <id>attach-sources</id>
+            <goals>
+              <goal>jar-no-fork</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-javadoc-plugin</artifactId>
+        <version>${plugin.javadoc.version}</version>
+        <configuration>
+          <doclint>all,-missing</doclint>
+        </configuration>
+        <executions>
+          <execution>
+            <id>attach-javadocs</id>
+            <goals>
+              <goal>jar</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-gpg-plugin</artifactId>
+        <version>${plugin.gpg.version}</version>
+        <executions>
+          <execution>
+            <id>sign-artifacts</id>
+            <goals>
+              <goal>sign</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.sonatype.central</groupId>
+        <artifactId>central-publishing-maven-plugin</artifactId>
+        <version>${plugin.central.version}</version>
+        <extensions>true</extensions>
+        <configuration>
+          <publishingServerId>central</publishingServerId>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+</project>

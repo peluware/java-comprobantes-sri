@@ -1,0 +1,34 @@
+# ─── Credenciales: NUNCA al repositorio ──────────────────────────────
+*.p12
+*.pfx
+*.jks
+*.keystore
+*.key
+*.pem
+.env
+.env.*
+
+# ─── Build ───────────────────────────────────────────────────────────
+target/
+*.class
+*.jar
+!**/src/**/*.jar
+
+# ─── Ficha técnica (3.6 MB, pública; ver spec/README.md) ─────────────
+spec/ficha/*.pdf
+
+# ─── IDE ─────────────────────────────────────────────────────────────
+.idea/
+.run/
+*.iml
+*.ipr
+*.iws
+.vscode/
+.settings/
+.classpath
+.project
+nbproject/
+
+# ─── SO ──────────────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db

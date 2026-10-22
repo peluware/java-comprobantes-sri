@@ -1,0 +1,14 @@
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+  <soap:Body>
+    <ns2:consultarEstadoAutorizacionComprobanteResponse xmlns:ns2="http://ec.gob.sri.ws.consultas">
+      <EstadoAutorizacionComprobante>
+        <claveAcceso>2111202405176001321000110010010000001241234567810</claveAcceso>
+        <mensajes/>
+        <estadoAutorizacion>PENDIENTE DE ANULAR</estadoAutorizacion>
+        <tipoComprobante>Nota de Débito</tipoComprobante>
+        <rucEmisor>1760013210001</rucEmisor>
+        <fechaAutorizacion>2024-12-12T10:49:37-05:00</fechaAutorizacion>
+      </EstadoAutorizacionComprobante>
+    </ns2:consultarEstadoAutorizacionComprobanteResponse>
+  </soap:Body>
+</soap:Envelope>

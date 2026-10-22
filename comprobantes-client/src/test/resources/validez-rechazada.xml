@@ -1,0 +1,18 @@
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+  <soap:Body>
+    <ns2:consultarEstadoAutorizacionComprobanteResponse xmlns:ns2="http://ec.gob.sri.ws.consultas">
+      <EstadoAutorizacionComprobante>
+        <estadoConsulta>RECHAZADA</estadoConsulta>
+        <claveAcceso>1510202407099313057500110010010000103591234567816</claveAcceso>
+        <mensajes>
+          <mensaje>
+            <identificador>99</identificador>
+            <mensaje>ERROR AL CONSULTAR DATOS DEL SERVICIO WEB</mensaje>
+            <informacionAdicional>No es posible validar la clave de acceso ya que la fecha de emisión está fuera del rango permitido.</informacionAdicional>
+            <tipo>ERROR</tipo>
+          </mensaje>
+        </mensajes>
+      </EstadoAutorizacionComprobante>
+    </ns2:consultarEstadoAutorizacionComprobanteResponse>
+  </soap:Body>
+</soap:Envelope>
